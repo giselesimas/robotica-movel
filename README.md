@@ -24,10 +24,7 @@ Nesta etapa, o projeto aborda:
 
 ```text
 src/robotica/
-├── core/
-├── robos/
-├── estimacao/
-└── controle/
+└── robos/
 
 webots/
 ├── worlds/
