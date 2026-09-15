@@ -1,0 +1,40 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/kuka/youbot/protos/Youbot.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation -0.518755781961486 -0.4515579231004966 0.7259393092860404 4.498065220117477
+  position -1.0977022069522275 3.324640957072679 7.0149823565997
+  followType "Pan and Tilt Shot"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 6 6
+  floorTileSize 6 6
+  floorAppearance Appearance {
+    material Material {
+      diffuseColor 0 0.2 0
+    }
+  }
+}
+Youbot {
+  controller "mecanum"
+  bodySlot [
+    Pen {
+      translation 0 0 -0.08
+      inkColor 1 0 0
+      inkDensity 1
+      leadSize 0.015
+      maxDistance 0.3
+    }
+  ]
+}

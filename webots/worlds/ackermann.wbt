@@ -1,0 +1,234 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  info [
+    "Description: Examples of four wheels vehicles"
+  ]
+  title "Four Wheels"
+  basicTimeStep 16
+  lineScale 0.2
+}
+Viewpoint {
+  orientation -0.4266985972620351 0.4230750211132183 0.7993346192957375 1.8066107201924266
+  position 0.3280613582169967 -4.020282154649 6.167350430107781
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 6 6
+  floorTileSize 6 6
+  floorAppearance Appearance {
+    material Material {
+      diffuseColor 0 0.2 0
+    }
+  }
+}
+DEF ACKERMAN Robot {
+  translation 0 0 0.0788752
+  rotation -0.999975881643252 0.001183349529115115 -0.006843669753327085 5.790992493023577e-05
+  children [
+    Pen {
+      translation 0 0 -0.078
+      rotationStep 0.01
+      inkColor 1 0 0
+      inkDensity 1
+      leadSize 0.01
+    }
+    DEF BODY_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.4 0.1
+      }
+    }
+    DEF REAR_RIGHT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.2556420642273892e-11
+        axis -1 0 0
+        anchor 0.13 -0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "rear_right_wheel"
+        }
+      ]
+      endPoint Solid {
+        translation 0.13 -0.15 0
+        rotation -1 0 0 0
+        children [
+          DEF WHEEL_ROT Pose {
+            rotation 0 -1 0 1.5708
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.8 0.8 0.8
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF WHEEL_CYL Cylinder {
+                  height 0.04
+                  radius 0.08
+                }
+              }
+            ]
+          }
+        ]
+        name "rear right wheel"
+        boundingObject DEF WHEEL_ROT Pose {
+          rotation 0 -1 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry DEF WHEEL_CYL Cylinder {
+                height 0.04
+                radius 0.08
+              }
+            }
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF REAR_LEFT_WHEEL HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.258507348191773e-11
+        axis -1 0 0
+        anchor -0.13 -0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "rear_left_wheel"
+        }
+      ]
+      endPoint Solid {
+        translation -0.13 -0.15 0
+        rotation -1 0 0 0
+        children [
+          USE WHEEL_ROT
+        ]
+        name "rear left wheel"
+        boundingObject USE WHEEL_ROT
+        physics Physics {
+        }
+      }
+    }
+    DEF RIGHT_STEER HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.2384108469005075e-11
+        axis 0 0 1
+        anchor 0.13 0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "right_steer"
+          minPosition -0.7
+          maxPosition 0.7
+        }
+      ]
+      endPoint Solid {
+        translation 0.13 0.15 0
+        children [
+          DEF FRONT_RIGHT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position 2.2955524830807918e-11
+              axis -1 0 0
+            }
+            device [
+              RotationalMotor {
+                name "front_right_wheel"
+              }
+            ]
+            endPoint Solid {
+              rotation -1 0 0 0
+              children [
+                USE WHEEL_ROT
+              ]
+              boundingObject USE WHEEL_ROT
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "right steer"
+        boundingObject DEF DUMMY Sphere {
+          radius 0.01
+        }
+        physics Physics {
+        }
+      }
+    }
+    DEF LEFT_STEER HingeJoint {
+      jointParameters HingeJointParameters {
+        position 2.1916109762515005e-11
+        axis 0 0 1
+        anchor -0.13 0.15 0
+      }
+      device [
+        RotationalMotor {
+          name "left_steer"
+          minPosition -0.7
+          maxPosition 0.7
+        }
+      ]
+      endPoint Solid {
+        translation -0.13 0.15 0
+        children [
+          DEF FRONT_LEFT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position 2.323721583139118e-11
+              axis -1 0 0
+            }
+            device [
+              RotationalMotor {
+                name "front_left_wheel"
+              }
+            ]
+            endPoint Solid {
+              rotation -1 0 0 0
+              children [
+                USE WHEEL_ROT
+              ]
+              boundingObject USE WHEEL_ROT
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "left steer"
+        boundingObject DEF DUMMY Sphere {
+          radius 0.01
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  name "ackerman"
+  boundingObject DEF BODY_SHAPE Shape {
+    appearance PBRAppearance {
+      baseColor 0.8 0.8 0.8
+      roughness 1
+      metalness 0
+    }
+    geometry Box {
+      size 0.2 0.4 0.1
+    }
+  }
+  physics Physics {
+  }
+  controller "ackermann"
+}
